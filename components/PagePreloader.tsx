@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { withBasePath } from "@/lib/basePath";
 
 // The page's own background art — add any future full-bleed images here too.
-const PRELOAD_IMAGES = ["/images/bg-1.png", "/images/shawdow.png"];
+const PRELOAD_IMAGES = ["/images/bg-1.png", "/images/shawdow.png"].map(withBasePath);
 const MAX_WAIT_MS = 6000;
 
 export default function PagePreloader() {

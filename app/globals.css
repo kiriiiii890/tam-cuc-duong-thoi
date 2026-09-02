@@ -277,11 +277,10 @@ textarea.input { min-height: 90px; resize: vertical; }
   pointer-events: none; user-select: none;
 }
 .hero-bg-fill {
+  /* background-image/mask-image are set inline from Hero.tsx so the paths
+     can carry the GitHub Pages base path (plain CSS url() can't). */
   position: absolute; inset: 0;
-  background-image: url('/images/bg-1.png');
   background-size: cover; background-position: top right; background-repeat: no-repeat;
-  -webkit-mask-image: url('/images/shawdow.png');
-  mask-image: url('/images/shawdow.png');
   -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
 }
@@ -373,7 +372,27 @@ textarea.input { min-height: 90px; resize: vertical; }
   margin: 0; font-size: 14px; line-height: 1.7; max-width: 42ch;
   color: color-mix(in srgb, var(--color-text) 78%, transparent);
 }
-.showcase-copy .btn { justify-self: start; margin-top: 6px; }
+
+.showcase-footer {
+  display: flex; align-items: center; justify-content: center; gap: 18px;
+  margin: clamp(20px, 3vw, 32px) auto 0; width: fit-content;
+  padding: 10px 18px; border-radius: 999px;
+  background: var(--color-surface); border: 1px solid var(--color-divider);
+}
+.showcase-arrow {
+  width: 28px; height: 28px; border-radius: 50%; border: 0;
+  background: transparent; cursor: pointer; font-size: 15px; color: var(--color-text);
+  display: flex; align-items: center; justify-content: center;
+}
+.showcase-arrow:hover { background: color-mix(in srgb, var(--color-text) 10%, transparent); }
+.showcase-counter {
+  font-family: var(--font-heading); font-weight: 800; font-size: 16px;
+  color: var(--color-text); min-width: 3ch; text-align: center;
+}
+.showcase-counter-total {
+  font-weight: 600; font-size: 13px;
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+}
 
 @media (prefers-reduced-motion: reduce) {
   .showcase-copy, .showcase-copy-inner, .showcase-card { transition: none; }

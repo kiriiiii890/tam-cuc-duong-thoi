@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CARD_PAIRS } from "@/lib/cards";
 
 export default function ProductShowcase() {
@@ -25,12 +25,44 @@ export default function ProductShowcase() {
     { i: nextIndex, pos: "right" },
   ];
 
+  // While one card opens and its old neighbor closes, the track's total
+  // height can briefly dip below its settled value (the two transitions
+  // aren't perfectly in lockstep — the closing card can lose height before
+  // the opening one has gained it back), which yanks every section below
+  // it up and back down. Watch the track itself (not just the open card,
+  // since the closing one can cause the same dip) and floor it to the
+  // tallest height it's actually measured, so it can grow but never
+  // shrink below that while a transition is running.
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const [minHeight, setMinHeight] = useState<number | undefined>(undefined);
+
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+
+    const observer = new ResizeObserver((entries) => {
+      const height = entries[0]?.borderBoxSize?.[0]?.blockSize ?? entries[0]?.contentRect.height;
+      if (!height) return;
+      setMinHeight((prev) => (prev === undefined ? height : Math.max(prev, height)));
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // A resize (e.g. rotating a phone, or a much narrower window) can make the
+  // previously-recorded floor too tall — drop it and let it re-measure.
+  useEffect(() => {
+    const onResize = () => setMinHeight(undefined);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
   return (
     <section id="san-pham" className="section showcase-section">
       <h6 className="section-kicker">01 — Sản phẩm</h6>
 
       <div className="showcase">
-        <div className="showcase-track">
+        <div className="showcase-track" ref={trackRef} style={minHeight ? { minHeight } : undefined}>
           {visible.map(({ i, pos }) => {
             const pair = CARD_PAIRS[i];
             const isOpen = pos === "center";
@@ -60,6 +92,18 @@ export default function ProductShowcase() {
             );
           })}
         </div>
+      </div>
+
+      <div className="showcase-footer">
+        <button type="button" className="showcase-arrow" aria-label="Quân trước" onClick={() => goTo(index - 1)}>
+          ←
+        </button>
+        <span className="showcase-counter">
+          {index + 1}<span className="showcase-counter-total">/{total}</span>
+        </span>
+        <button type="button" className="showcase-arrow" aria-label="Quân sau" onClick={() => goTo(index + 1)}>
+          →
+        </button>
       </div>
     </section>
   );

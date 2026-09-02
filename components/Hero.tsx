@@ -1,8 +1,16 @@
+import { withBasePath } from "@/lib/basePath";
+
 export default function Hero() {
+  const bgFillStyle = {
+    backgroundImage: `url('${withBasePath("/images/bg-1.png")}')`,
+    WebkitMaskImage: `url('${withBasePath("/images/shawdow.png")}')`,
+    maskImage: `url('${withBasePath("/images/shawdow.png")}')`,
+  };
+
   return (
     <section id="top" className="hero">
       <div className="hero-bg" aria-hidden="true">
-        <div className="hero-bg-fill" />
+        <div className="hero-bg-fill" style={bgFillStyle} />
       </div>
       <div className="wrap">
         <div>

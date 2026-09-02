@@ -1,3 +1,5 @@
+import { withBasePath } from "./basePath";
+
 export type CardPair = {
   id: string;
   rank: string;
@@ -8,7 +10,7 @@ export type CardPair = {
 };
 
 // Placeholder copy — swap in the real descriptions later, structure stays the same.
-export const CARD_PAIRS: CardPair[] = [
+const RAW_CARD_PAIRS: CardPair[] = [
   {
     id: "tuong",
     rank: "Tướng",
@@ -66,3 +68,9 @@ export const CARD_PAIRS: CardPair[] = [
     blackImg: "/images/card/card-tot-den.png",
   },
 ];
+
+export const CARD_PAIRS: CardPair[] = RAW_CARD_PAIRS.map((pair) => ({
+  ...pair,
+  redImg: withBasePath(pair.redImg),
+  blackImg: withBasePath(pair.blackImg),
+}));
