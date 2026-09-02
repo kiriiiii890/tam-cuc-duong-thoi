@@ -3,67 +3,74 @@ import { withBasePath } from "./basePath";
 export type CardPair = {
   id: string;
   rank: string;
+  past: string;
+  present: string;
   quote: string;
-  description: string;
   redImg: string;
   blackImg: string;
 };
 
-// Placeholder copy — swap in the real descriptions later, structure stays the same.
 const RAW_CARD_PAIRS: CardPair[] = [
   {
     id: "tuong",
     rank: "Tướng",
-    quote: "Người đứng đầu bộ tướng, không ai kết đôi được với Tướng.",
-    description: "Quân cao nhất trong 7 bậc, chỉ có một lá mỗi màu. Vẽ lại thành người đứng giữa đám đông ồn ào của phố.",
+    past: "Quân cao nhất, cầm trịch cả bàn cờ",
+    present: "Người đánh cờ tướng vỉa hè, giữ nhịp cuộc chơi bằng bản lĩnh",
+    quote: "Lãnh đạo bằng bản lĩnh, chiến thắng bằng tầm nhìn.",
     redImg: "/images/card/card-tuong-do.png",
     blackImg: "/images/card/card-tuong-den.png",
   },
   {
     id: "si",
     rank: "Sĩ",
-    quote: "Hai lá mỗi màu, đứng sát cạnh Tướng.",
-    description: "Mô tả ngắn về quân Sĩ sẽ được cập nhật ở đây — tạm thời giữ vai trò minh họa bố cục.",
+    past: "Cận vệ luôn đứng bên bảo vệ Tướng",
+    present: "Người trẻ tri thức, làm việc cùng chiếc laptop ở bất cứ đâu",
+    quote: "Giữ vững niềm tin, bảo toàn chính đạo.",
     redImg: "/images/card/card-si-do.png",
     blackImg: "/images/card/card-si-den.png",
   },
   {
     id: "voi",
     rank: "Tượng",
-    quote: "Hai lá mỗi màu, đi cùng hàng với Sĩ.",
-    description: "Mô tả ngắn về quân Tượng sẽ được cập nhật ở đây — tạm thời giữ vai trò minh họa bố cục.",
+    past: "Tuyến phòng thủ vững chắc phía sau",
+    present: "Cậu bé trên xe thư báo, chở tin tức đi khắp phố mỗi sớm",
+    quote: "Điềm tĩnh để nhìn xa hơn một nước cờ.",
     redImg: "/images/card/card-voi-do.png",
     blackImg: "/images/card/card-voi-den.png",
   },
   {
     id: "xe",
     rank: "Xe",
-    quote: "Hai lá mỗi màu, thứ bậc ngang Pháo và Mã.",
-    description: "Mô tả ngắn về quân Xe sẽ được cập nhật ở đây — tạm thời giữ vai trò minh họa bố cục.",
+    past: "Quân có sức mạnh và tầm hoạt động lớn nhất",
+    present: "Người trẻ lướt ván, mang năng lượng tự do của đường phố",
+    quote: "Tiến thẳng phía trước, khai mở mọi lối đi.",
     redImg: "/images/card/card-xe-do.png",
     blackImg: "/images/card/card-xe-den.png",
   },
   {
     id: "phao",
     rank: "Pháo",
-    quote: "Hai lá mỗi màu, thứ bậc ngang Xe và Mã.",
-    description: "Mô tả ngắn về quân Pháo sẽ được cập nhật ở đây — tạm thời giữ vai trò minh họa bố cục.",
+    past: "Quân tấn công, tạo thế bất ngờ",
+    present: "Người cầm loa tay, tiếng nói vang khắp con phố nhỏ",
+    quote: "Ẩn mình chờ thời, bừng sáng đúng lúc.",
     redImg: "/images/card/card-phao-do.png",
     blackImg: "/images/card/card-phao-den.png",
   },
   {
     id: "ma",
     rank: "Mã",
-    quote: "Hai lá mỗi màu, thứ bậc ngang Xe và Pháo.",
-    description: "Mô tả ngắn về quân Mã sẽ được cập nhật ở đây — tạm thời giữ vai trò minh họa bố cục.",
+    past: "Quân nhanh nhẹn, di chuyển linh hoạt",
+    present: "Anh shipper phóng xe giữa phố, nhịp sống của thời kinh tế số",
+    quote: "Biến hóa không ngừng, tạo nên điều bất ngờ.",
     redImg: "/images/card/card-ma-do.png",
     blackImg: "/images/card/card-ma-den.png",
   },
   {
     id: "tot",
     rank: "Tốt",
-    quote: "Năm lá mỗi màu — đông nhất trong bộ tướng.",
-    description: "Mô tả ngắn về quân Tốt sẽ được cập nhật ở đây — tạm thời giữ vai trò minh họa bố cục.",
+    past: "Quân đông nhất, hỗ trợ tạo thế trận",
+    present: "Những đứa trẻ tinh nghịch giữa mùa hội, mầm cây của ngày mai",
+    quote: "Khởi đầu nhỏ bé, kết thúc bằng kỳ tích.",
     redImg: "/images/card/card-tot-do.png",
     blackImg: "/images/card/card-tot-den.png",
   },

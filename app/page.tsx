@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 // import StatStrip from "@/components/StatStrip"; // temporarily hidden
 import ProductShowcase from "@/components/ProductShowcase";
+import BrandStory from "@/components/BrandStory";
 import Benefits from "@/components/Benefits";
 import Specs from "@/components/Specs";
 import Pricing from "@/components/Pricing";
@@ -18,6 +19,7 @@ export default function Home() {
       <Hero />
       {/* <StatStrip /> temporarily hidden */}
       <ProductShowcase />
+      <BrandStory />
       <Benefits />
       <Specs />
       <Pricing />

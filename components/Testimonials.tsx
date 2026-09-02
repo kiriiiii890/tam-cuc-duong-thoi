@@ -35,7 +35,7 @@ const TESTIMONIALS: Testimonial[] = [
 export default function Testimonials() {
   return (
     <section id="danh-gia" className="section">
-      <h6 className="section-kicker">05 — Người đã chơi</h6>
+      <h6 className="section-kicker">06 — Người đã chơi</h6>
       <div className="testi-grid">
         {TESTIMONIALS.map((t) => (
           <div className="testi-card" key={t.name}>

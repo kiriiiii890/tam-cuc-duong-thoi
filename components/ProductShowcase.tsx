@@ -84,8 +84,15 @@ export default function ProductShowcase() {
                 <div className="showcase-copy" aria-hidden={!isOpen}>
                   <div className="showcase-copy-inner">
                     <h3>{pair.rank}</h3>
-                    <p className="showcase-quote">{pair.quote}</p>
-                    <p className="showcase-desc">{pair.description}</p>
+                    <p className="showcase-desc">
+                      <span className="showcase-desc-label">Xưa</span>
+                      {pair.past}
+                    </p>
+                    <p className="showcase-desc">
+                      <span className="showcase-desc-label">Nay</span>
+                      {pair.present}
+                    </p>
+                    <p className="showcase-quote">&ldquo;{pair.quote}&rdquo;</p>
                   </div>
                 </div>
               </article>

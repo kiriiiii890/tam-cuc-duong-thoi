@@ -10,7 +10,7 @@ export default function Pricing() {
   return (
     <section id="goi-mua" className="pricing">
       <div className="wrap section">
-        <h6 className="section-kicker">04 — Gói mua</h6>
+        <h6 className="section-kicker">05 — Gói mua</h6>
         <div className="pricing-grid">
           {PRODUCTS.map((product) => (
             <div className={`price-card${product.featured ? " featured" : ""}`} key={product.id}>
