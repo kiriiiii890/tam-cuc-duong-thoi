@@ -8,6 +8,12 @@ import { CARD_PAIRS } from "@/lib/cards";
 // to its new slot while it grows open, instead of snapping there instantly.
 const SLIDE_MS = 700;
 
+// The departing card's clone fades out much faster than that: it's pinned
+// at its last position while the closing center card reflows into that same
+// spot over the full SLIDE_MS, so if the clone lingered that long the two
+// would visibly overlap. Clearing it early avoids the collision.
+const EXIT_MS = 280;
+
 export default function ProductShowcase() {
   const [index, setIndex] = useState(0);
   const total = CARD_PAIRS.length;
@@ -66,19 +72,26 @@ export default function ProductShowcase() {
     setIndex(target);
   };
 
-  // Fade the departing card's clone out, then drop it once the fade finishes.
+  // Fade the departing card's clone out quickly (EXIT_MS), then hold it
+  // fully invisible (`fill: "forwards"` keeps it at opacity 0 instead of
+  // snapping back to visible once the animation ends) until the rest of the
+  // transition has actually settled (SLIDE_MS), only then dropping it from
+  // the DOM — so removal never lands mid-transition.
   useLayoutEffect(() => {
     if (!exiting) return;
     const el = exitRef.current;
     if (!el) return;
-    const anim = el.animate(
+    el.animate(
       [
         { opacity: 1, filter: "blur(0)" },
         { opacity: 0, filter: "blur(6px)" },
       ],
-      { duration: SLIDE_MS, easing: "cubic-bezier(0.4, 0, 0.2, 1)" }
+      { duration: EXIT_MS, easing: "cubic-bezier(0.4, 0, 0.2, 1)", fill: "forwards" }
     );
-    anim.onfinish = () => setExiting((cur) => (cur?.id === exiting.id ? null : cur));
+    const id = window.setTimeout(() => {
+      setExiting((cur) => (cur?.id === exiting.id ? null : cur));
+    }, SLIDE_MS);
+    return () => window.clearTimeout(id);
   }, [exiting]);
 
   useLayoutEffect(() => {
