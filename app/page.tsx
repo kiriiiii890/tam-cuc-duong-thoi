@@ -18,8 +18,8 @@ export default function Home() {
       <Header />
       <Hero />
       {/* <StatStrip /> temporarily hidden */}
-      <ProductShowcase />
       <BrandStory />
+      <ProductShowcase />
       <Benefits />
       <Specs />
       <Pricing />
