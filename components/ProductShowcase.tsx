@@ -197,9 +197,9 @@ export default function ProductShowcase() {
           >
             <div className="showcase-media">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={exiting.pair.redImg} alt="" className="showcase-card showcase-card-red" />
+              <img src={exiting.pair.blackImg} alt="" className="showcase-card showcase-card-back" />
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={exiting.pair.blackImg} alt="" className="showcase-card showcase-card-black" />
+              <img src={exiting.pair.redImg} alt="" className="showcase-card showcase-card-front" />
             </div>
           </div>
         )}
@@ -225,9 +225,9 @@ export default function ProductShowcase() {
                   tabIndex={isOpen ? -1 : 0}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={pair.redImg} alt={`Lá ${pair.rank} đỏ`} className="showcase-card showcase-card-red" />
+                  <img src={pair.blackImg} alt={`Lá ${pair.rank} đen`} className="showcase-card showcase-card-back" />
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={pair.blackImg} alt={`Lá ${pair.rank} đen`} className="showcase-card showcase-card-black" />
+                  <img src={pair.redImg} alt={`Lá ${pair.rank} đỏ`} className="showcase-card showcase-card-front" />
                 </button>
                 <div className="showcase-copy" aria-hidden={!isOpen}>
                   <div className="showcase-copy-inner">

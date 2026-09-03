@@ -1,8 +1,17 @@
 /* Design tokens & base component classes — ported from the "Modernist" design
    system used in the original Claude Design source. */
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&display=swap');
+
+@font-face {
+  font-family: "UTM Ambrosia";
+  src: url('/fonts/UTM-Ambrosia.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
+  --font-showcase-title: "UTM Ambrosia", var(--font-heading);
   --color-bg: #fffef2;
   --color-surface: #eae9e9;
   --color-text: #201e1d;
@@ -347,45 +356,47 @@ textarea.input { min-height: 90px; resize: vertical; }
   width: clamp(60px, 10vw, 90px); border-radius: 6px; box-shadow: var(--shadow-sm); display: block;
   transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), margin-left 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.showcase-card-black { width: 0; opacity: 0; margin-left: 0; }
-.showcase-card-box.is-open .showcase-card-red,
-.showcase-card-box.is-open .showcase-card-black {
+.showcase-card-front { width: 0; opacity: 0; margin-left: 0; }
+.showcase-card-box.is-open .showcase-card-back,
+.showcase-card-box.is-open .showcase-card-front {
   width: var(--card-w);
 }
-.showcase-card-box.is-open .showcase-card-black { opacity: 1; margin-left: 8px; }
+.showcase-card-box.is-open .showcase-card-front { opacity: 1; margin-left: 8px; }
 
 .showcase-copy {
-  flex: none; position: relative; z-index: 0; max-width: 0; overflow: hidden; background: #f8fabb;
-  box-shadow: 0 0 0 0 #f8fabb;
+  flex: none; position: relative; z-index: 0; max-width: 0; overflow: hidden;
+  background: linear-gradient(to right, #281253, #4836a2);
+  box-shadow: 0 0 0 0 #281253;
   transition: max-width 0.7s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .showcase-card-box.is-open .showcase-copy {
   max-width: clamp(260px, 36vw, 460px);
   /* extends this panel's background left, under the cards, to the midpoint
-     of the red (back) card — content position is untouched, only the fill */
-  box-shadow: calc(-1 * (1.5 * var(--card-w) + 8px)) 0 0 0 #f8fabb;
+     of the back card — content position is untouched, only the fill.
+     Solid color matches the gradient's left (start) edge so the seam is invisible. */
+  box-shadow: calc(-1 * (1.5 * var(--card-w) + 8px)) 0 0 0 #281253;
 }
 
 .showcase-copy-inner {
   width: clamp(260px, 36vw, 460px); height: 100%;
   padding: clamp(24px, 4vw, 40px); display: flex; flex-direction: column;
-  justify-content: center; gap: 12px; color: var(--color-text);
+  justify-content: center; gap: 12px; color: var(--color-bg);
   opacity: 0; transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .showcase-card-box.is-open .showcase-copy-inner { opacity: 1; }
-.showcase-copy h3 { font-size: clamp(24px, 3vw, 34px); margin: 0; }
+.showcase-copy h3 { font-family: var(--font-showcase-title); font-size: clamp(44px, 6vw, 68px); letter-spacing: 0.09em; margin: 0; }
 .showcase-quote {
   font-style: italic; font-weight: 700; margin: 4px 0 0; font-size: 15px;
-  color: var(--color-text);
+  color: var(--color-bg);
 }
 .showcase-desc {
   margin: 0; font-size: 14px; line-height: 1.6; max-width: 42ch;
-  color: color-mix(in srgb, var(--color-text) 78%, transparent);
+  color: color-mix(in srgb, var(--color-bg) 82%, transparent);
 }
 .showcase-desc-label {
   display: inline-block; min-width: 32px; margin-right: 6px;
-  font-family: var(--font-heading); font-weight: 800; font-size: 11px;
-  letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-accent-700);
+  font-family: var(--font-heading); font-weight: 900; font-size: 14px;
+  letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-accent-400);
 }
 
 .showcase-footer {

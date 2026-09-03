@@ -26,7 +26,7 @@ const BENEFITS: Benefit[] = [
 export default function Benefits() {
   return (
     <section className="benefits">
-      <div className="wrap">
+      <div className="wrap section">
         <h6 className="section-kicker">03 - Vì sao nên có một bộ</h6>
         <div className="benefits-grid">
           {BENEFITS.map((b) => (
