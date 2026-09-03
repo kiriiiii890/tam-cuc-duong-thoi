@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import CartButton from "./cart/CartButton";
+import { withBasePath } from "@/lib/basePath";
 
 const HIDE_DELAY_MS = 2500;
 const TOP_THRESHOLD = 40;
@@ -59,8 +60,8 @@ export default function Header() {
     <header ref={headerRef} className={`site-header${hidden ? " is-hidden" : ""}`}>
       <div className="wrap">
         <a href="#top" className="brand">
-          <span>TAM CÚC</span>
-          <span className="accent">ĐƯƠNG THỜI</span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={withBasePath("/images/logo/logo-full-trimmed.png")} alt="Tam Cúc Đương Thời" className="brand-logo" />
         </a>
         <nav className="site-nav">
           <a href="#san-pham">Sản phẩm</a>

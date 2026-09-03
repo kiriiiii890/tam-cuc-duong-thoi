@@ -2,6 +2,18 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { CARD_PAIRS } from "@/lib/cards";
+import { withBasePath } from "@/lib/basePath";
+
+// Merch that ships alongside the card deck itself — shown as a plain grid
+// below the rank carousel, no interaction needed.
+const ADDON_ITEMS = [
+  { name: "Hộp bài nhỏ", image: "/images/item/hop-bai-nho.png" },
+  { name: "Hộp bài lớn", image: "/images/item/hop-bai-lon.png" },
+  { name: "Cốc sứ", image: "/images/item/coc-su.png" },
+  { name: "Túi vải", image: "/images/item/tui-vai-01.png" },
+  { name: "Khăn vuông", image: "/images/item/khan-vuong-01.png" },
+  { name: "Quạt", image: "/images/item/quat.png" },
+];
 
 // How long the width/opacity open-close transitions run (globals.css) — the
 // FLIP slide below is kept in lockstep with that so a card visibly travels
@@ -247,6 +259,20 @@ export default function ProductShowcase() {
         <button type="button" className="showcase-arrow" aria-label="Quân sau" onClick={() => goTo(index + 1)}>
           →
         </button>
+      </div>
+
+      <div className="showcase-addons">
+        <h3 className="showcase-addons-title">Sản phẩm đi kèm</h3>
+        <div className="showcase-addons-grid">
+          {ADDON_ITEMS.map((item) => (
+            <div className="showcase-addon-card" key={item.name}>
+              <div className="showcase-addon-frame">
+                <img src={withBasePath(item.image)} alt={item.name} />
+              </div>
+              <p className="showcase-addon-caption">{item.name}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
