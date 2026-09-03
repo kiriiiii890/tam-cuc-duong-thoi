@@ -16,7 +16,7 @@ const RAW_CARD_PAIRS: CardPair[] = [
     rank: "TƯỚNG",
     past: "Quân cao nhất trên bàn cờ, không bao giờ rời khỏi cung của mình nhưng mọi nước đi của đối phương đều xoay quanh việc bảo vệ hay uy hiếp quân này. Mất Tướng là mất tất cả - ván cờ kết thúc ngay lập tức.",
     present: "Ngoài vỉa hè, Tướng là người ngồi chiếu trên - không hẳn đánh hay nhất bàn, nhưng là người giữ nhịp, phân xử tranh cãi, và quyết định khi nào ván cờ dừng lại để cả nhóm còn kịp về ăn cơm tối.",
-    quote: "Lãnh đạo bằng bản lĩnh, chiến thắng bằng tầm nhìn.",
+    quote: "Lãnh đạo bằng bản lĩnh,\nchiến thắng bằng tầm nhìn.",
     redImg: "/images/card/card-tuong-do.png",
     blackImg: "/images/card/card-tuong-den.png",
   },

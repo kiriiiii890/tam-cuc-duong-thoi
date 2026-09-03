@@ -240,7 +240,16 @@ export default function ProductShowcase() {
                       <span className="showcase-desc-label">Nay</span>
                       {pair.present}
                     </p>
-                    <p className="showcase-quote">&ldquo;{pair.quote}&rdquo;</p>
+                    <p className="showcase-quote">
+                      &ldquo;
+                      {pair.quote.split("\n").map((line, i, arr) => (
+                        <span key={i}>
+                          {line}
+                          {i < arr.length - 1 && <br />}
+                        </span>
+                      ))}
+                      &rdquo;
+                    </p>
                   </div>
                 </div>
               </article>
