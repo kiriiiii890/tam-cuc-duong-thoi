@@ -18,7 +18,9 @@ export default function Hero() {
           <h1>
             Tìm về hồn xưa
             <br />
-            trong nếp bài sờn cũ
+            trong nếp bài
+            <br />
+            sờn cũ
           </h1>
           <p>
             Bộ bài tam cúc 32 lá vẽ lại từ đầu: bộ tướng cũ đặt vào đời sống hôm nay, in offset trên
