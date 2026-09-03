@@ -1,3 +1,5 @@
+import { withBasePath } from "@/lib/basePath";
+
 const STORY_BEATS = [
   {
     title: "Tướng & bàn cờ vỉa hè",
@@ -46,7 +48,7 @@ export default function BrandStory() {
         {STORY_BEATS.map((beat, i) => (
           <div key={beat.title} className={`story-item${i % 2 === 1 ? " is-right" : ""}`}>
             <div className="story-seg">
-              <img src={beat.image} alt={beat.title} />
+              <img src={withBasePath(beat.image)} alt={beat.title} />
             </div>
             <div className="story-caption">
               <h4>{beat.title}</h4>
