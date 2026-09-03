@@ -13,7 +13,7 @@ export const PRODUCTS: Product[] = [
     id: "single",
     tag: "Một bộ",
     name: "Một bộ",
-    price: 800000,
+    price: 828626,
     sub: "Cho người mua thử",
     features: ["1 bộ 32 lá + hộp cứng", "Tờ luật + thiệp trắng", "Giao 2–4 ngày"],
   },
