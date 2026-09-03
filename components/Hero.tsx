@@ -23,8 +23,8 @@ export default function Hero() {
             sờn cũ
           </h1>
           <p>
-            Bộ bài tam cúc 32 lá vẽ lại từ đầu: bộ tướng cũ đặt vào đời sống hôm nay, in offset trên
-            giấy cán mờ. Luật in kèm trong hộp, mở ra là chơi được ván đầu.
+            Vẽ lại từ những quân bài đã sờn cũ, đã lặng lẽ nằm quên trong ngăn tủ - nơi 32 lá bài dân
+            gian bước ra đời sống hôm nay, mang theo một hình hài hoàn toàn mới.
           </p>
           <div className="hero-ctas">
             <a className="btn btn-primary" href="#goi-mua">
