@@ -198,6 +198,34 @@ textarea.input { min-height: 90px; resize: vertical; }
   display: flex; align-items: center; justify-content: center;
 }
 
+/* header burger + mobile menu — nav links and the header's own "Mua ngay"
+   button don't fit next to the logo/cart at phone widths, so below the
+   breakpoint they're replaced by a burger toggling a dropdown panel. */
+.header-burger {
+  display: none;
+  width: 36px; height: 36px; background: transparent; border: 1px solid var(--color-divider);
+  cursor: pointer; color: var(--color-text); flex: none;
+  align-items: center; justify-content: center;
+}
+.header-burger:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
+.mobile-menu {
+  border-top: 2px solid var(--color-divider);
+  padding: 16px clamp(16px, 4vw, 40px) 20px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.mobile-menu-nav { display: flex; flex-direction: column; gap: 2px; }
+.mobile-menu-nav a {
+  text-decoration: none; color: var(--color-text);
+  font-family: var(--font-heading); font-weight: 800; font-size: 15px;
+  padding: 12px 0; border-bottom: 1px solid var(--color-divider);
+}
+.mobile-menu-nav a:hover { color: var(--color-accent); }
+
+@media (max-width: 720px) {
+  .site-nav, .header-cta { display: none; }
+  .header-burger { display: flex; }
+}
+
 /* cart drawer */
 .cart-overlay {
   position: fixed; inset: 0; z-index: 60; background: color-mix(in srgb, var(--color-neutral-900) 55%, transparent);
@@ -294,6 +322,7 @@ textarea.input { min-height: 90px; resize: vertical; }
   -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
 }
+.hero-bg-fill-mobile { display: none; background-position: center; background-size: cover; }
 .hero .wrap {
   position: relative; z-index: 1;
   padding-top: clamp(70px, 10vw, 140px);
@@ -307,6 +336,39 @@ textarea.input { min-height: 90px; resize: vertical; }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
 .hero-ctas .btn { padding: 14px 22px; font-size: 15px; }
 .hero-ctas .btn-secondary { color: var(--color-bg); border-color: color-mix(in srgb, var(--color-bg) 55%, transparent); }
+
+/* below this width, the box aspect-ratio (tied to the background art's own
+   ratio, ~1:1) is nowhere near tall enough for 3 lines of heading + the
+   paragraph + 2 stacked buttons — they were getting clipped by the hero's
+   overflow:hidden. Drop it and let the content set the height instead. */
+@media (max-width: 640px) {
+  .hero {
+    aspect-ratio: auto;
+    min-height: 100vh; min-height: 100dvh;
+    display: flex; flex-direction: column;
+  }
+  .hero .wrap {
+    flex: 1; display: flex; flex-direction: column; justify-content: flex-start; align-items: center;
+    text-align: center;
+    /* .hero's own padding-top already clears the fixed header — this rule's
+       desktop padding-top stacks another 70-140px on top of that, pushing
+       the heading well below the header instead of sitting snug against it. */
+    padding-top: 20px;
+  }
+  .hero p { max-width: 38ch; }
+  .hero-ctas { display: none; }
+  .hero h1 { font-size: 30px; }
+  /* the desktop image + ink-drip mask shape were tuned for the desktop
+     box's aspect ratio — on a tall phone box the mask hides most of the
+     artwork's main subject, so mobile swaps in a different, unmasked
+     background image (bg-3) instead of bg-1 + shawdow. */
+  .hero-bg-fill-desktop { display: none; }
+  .hero-bg-fill-mobile { display: block; }
+  /* .hero-bg is absolutely positioned to the hero box's own top edge, which
+     sits behind the fixed header — without this the image's top portion
+     renders hidden under the header bar instead of starting below it. */
+  .hero-bg { top: var(--header-height, 68px); }
+}
 /* stat strip */
 .stat-strip {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0;

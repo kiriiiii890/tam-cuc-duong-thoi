@@ -6,11 +6,18 @@ export default function Hero() {
     WebkitMaskImage: `url('${withBasePath("/images/shawdow.png")}')`,
     maskImage: `url('${withBasePath("/images/shawdow.png")}')`,
   };
+  // Mobile swaps in a plain (unmasked) background — see the
+  // `.hero-bg-fill-mobile` / `@media (max-width: 640px)` rules in
+  // globals.css for why the desktop mask shape doesn't work there.
+  const bgFillStyleMobile = {
+    backgroundImage: `url('${withBasePath("/images/bg-4.png")}')`,
+  };
 
   return (
     <section id="top" className="hero">
       <div className="hero-bg" aria-hidden="true">
-        <div className="hero-bg-fill" style={bgFillStyle} />
+        <div className="hero-bg-fill hero-bg-fill-desktop" style={bgFillStyle} />
+        <div className="hero-bg-fill hero-bg-fill-mobile" style={bgFillStyleMobile} />
       </div>
       <div className="wrap">
         <div>
