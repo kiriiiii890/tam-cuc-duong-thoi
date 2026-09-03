@@ -28,7 +28,7 @@ export default function Hero() {
           </p>
           <div className="hero-ctas">
             <a className="btn btn-primary" href="#goi-mua">
-              Mua ngay — 800.000₫
+              Mua ngay - 800.000₫
             </a>
             <a className="btn btn-secondary" href="#san-pham">
               Xem chi tiết

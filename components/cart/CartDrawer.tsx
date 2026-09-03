@@ -58,7 +58,7 @@ export default function CartDrawer() {
             type="button"
             className="btn btn-primary btn-block"
             disabled={items.length === 0}
-            onClick={() => alert("Thanh toán sẽ sớm có mặt — hiện mới quản lý giỏ hàng.")}
+            onClick={() => alert("Thanh toán sẽ sớm có mặt - hiện mới quản lý giỏ hàng.")}
           >
             Thanh toán
           </button>

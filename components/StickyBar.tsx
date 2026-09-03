@@ -25,7 +25,7 @@ export default function StickyBar() {
           <div className="sub">32 lá · bản in đầu 500 bộ</div>
         </div>
         <a className="btn btn-primary" href="#goi-mua">
-          Mua ngay — 800.000₫
+          Mua ngay - 800.000₫
         </a>
       </div>
     </div>

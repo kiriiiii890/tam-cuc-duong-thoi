@@ -4,7 +4,7 @@ export default function CtaBand() {
       <div className="wrap">
         <h2>Một bộ bài giấy vẫn là cách nhanh nhất để bốn người ngồi lại với nhau.</h2>
         <a className="btn" href="#goi-mua">
-          Mua ngay — 800.000₫
+          Mua ngay - 800.000₫
         </a>
       </div>
     </section>
