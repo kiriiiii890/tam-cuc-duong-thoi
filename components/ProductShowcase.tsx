@@ -7,12 +7,26 @@ import { withBasePath } from "@/lib/basePath";
 // Merch that ships alongside the card deck itself — shown as a plain grid
 // below the rank carousel, no interaction needed.
 const ADDON_ITEMS = [
-  { name: "Hộp bài nhỏ", image: "/images/item/hop-bai-nho.png" },
-  { name: "Hộp bài lớn", image: "/images/item/hop-bai-lon.png" },
-  { name: "Cốc sứ", image: "/images/item/coc-su.png" },
-  { name: "Túi vải", image: "/images/item/tui-vai-01.png" },
-  { name: "Khăn vuông", image: "/images/item/khan-vuong-01.png" },
-  { name: "Quạt", image: "/images/item/quat.png" },
+  {
+    name: "Hộp bài nhỏ",
+    description: "Kích thước gọn, tiện mang theo mỗi khi ra ngoài chơi.",
+    images: ["/images/item/hop-bai-nho.png"],
+  },
+  {
+    name: "Hộp đựng bài",
+    description: "Giấy cứng cán màng, khắc hoạ tinh giản hoạ tiết mây & hoa văn cổ.",
+    images: ["/images/item/hop-bai-lon.png"],
+  },
+  {
+    name: "Khăn trải bài",
+    description: "Vải bố in hoạ tiết mây, trải bàn êm tay khi xào và so bài.",
+    images: ["/images/item/khan-vuong-01.png"],
+  },
+  {
+    name: "Túi quà tặng",
+    description: "Hoạ tiết mây & ánh sao, sẵn sàng cho những dịp biếu tặng.",
+    images: ["/images/item/tui-vai-01.png", "/images/item/tui-vai-02.png"],
+  },
 ];
 
 // How long the width/opacity open-close transitions run (globals.css) — the
@@ -26,8 +40,14 @@ const SLIDE_MS = 700;
 // would visibly overlap. Clearing it early avoids the collision.
 const EXIT_MS = 280;
 
+// How long the centered rank sits idle before the carousel auto-advances to
+// the next one.
+const AUTO_ADVANCE_MS = 25000;
+
 export default function ProductShowcase() {
   const [index, setIndex] = useState(0);
+  const [blackFlipped, setBlackFlipped] = useState(false);
+  const [redFlipped, setRedFlipped] = useState(false);
   const total = CARD_PAIRS.length;
   const prevIndex = (index - 1 + total) % total;
   const nextIndex = (index + 1) % total;
@@ -82,7 +102,17 @@ export default function ProductShowcase() {
     boxRefs.current.forEach((el, id) => rects.set(id, el.getBoundingClientRect()));
     flipFromRef.current = rects;
     setIndex(target);
+    setBlackFlipped(false);
+    setRedFlipped(false);
   };
+
+  // Auto-advance to the next rank on a timer — restarts every time the
+  // centered rank changes, whether that happened by hand or on its own.
+  useEffect(() => {
+    const id = setTimeout(() => goTo(nextIndex), AUTO_ADVANCE_MS);
+    return () => clearTimeout(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [index]);
 
   // Fade the departing card's clone out quickly (EXIT_MS), then hold it
   // fully invisible (`fill: "forwards"` keeps it at opacity 0 instead of
@@ -185,7 +215,14 @@ export default function ProductShowcase() {
 
   return (
     <section id="san-pham" className="section showcase-section">
-      <h6 className="section-kicker">03 - Sản phẩm</h6>
+      <div className="showcase-heading-block">
+        <span className="showcase-heading-kicker">Bộ nhân vật</span>
+        <h2 className="showcase-heading-title uses-webfont">Bảy quân bài, bảy câu chuyện</h2>
+        <p className="showcase-heading-body">
+          Mỗi quân bài truyền thống được tái hiện qua một nhân vật quen thuộc của phố thị hôm nay
+          — giữ nguyên thứ bậc, đổi mới linh hồn.
+        </p>
+      </div>
 
       <div className="showcase" ref={showcaseRef}>
         {exiting && (
@@ -216,19 +253,76 @@ export default function ProductShowcase() {
                 }}
                 className={`showcase-card-box${isOpen ? " is-open" : ""}`}
               >
-                <button
-                  type="button"
-                  className="showcase-media"
-                  onClick={() => goTo(i)}
-                  aria-label={isOpen ? undefined : `Xem quân ${pair.rank}`}
-                  aria-current={isOpen || undefined}
-                  tabIndex={isOpen ? -1 : 0}
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={pair.blackImg} alt={`Lá ${pair.rank} đen`} className="showcase-card showcase-card-back" />
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={pair.redImg} alt={`Lá ${pair.rank} đỏ`} className="showcase-card showcase-card-front" />
-                </button>
+                {isOpen ? (
+                  <div className="showcase-media">
+                    <button
+                      type="button"
+                      className={`showcase-turn showcase-card-back${blackFlipped ? " is-turned" : ""}`}
+                      onClick={() => setBlackFlipped((v) => !v)}
+                      aria-label={
+                        blackFlipped
+                          ? `Xem mặt trước quân ${pair.rank} đen`
+                          : `Lật xem mặt sau quân ${pair.rank} đen`
+                      }
+                    >
+                      <span className="showcase-turn-face showcase-turn-front">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={pair.blackImg} alt={`Lá ${pair.rank} đen`} className="showcase-card-img" />
+                      </span>
+                      <span className="showcase-turn-face showcase-turn-back">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={withBasePath("/images/card/card-logo.png")}
+                          alt="Mặt sau lá bài"
+                          className="showcase-card-img"
+                        />
+                      </span>
+                    </button>
+                    <button
+                      type="button"
+                      className={`showcase-turn showcase-card-front${redFlipped ? " is-turned" : ""}`}
+                      onClick={() => setRedFlipped((v) => !v)}
+                      aria-label={
+                        redFlipped
+                          ? `Xem mặt trước quân ${pair.rank} đỏ`
+                          : `Lật xem mặt sau quân ${pair.rank} đỏ`
+                      }
+                    >
+                      <span className="showcase-turn-face showcase-turn-front">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={pair.redImg} alt={`Lá ${pair.rank} đỏ`} className="showcase-card-img" />
+                      </span>
+                      <span className="showcase-turn-face showcase-turn-back">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={withBasePath("/images/card/card-logo.png")}
+                          alt="Mặt sau lá bài"
+                          className="showcase-card-img"
+                        />
+                      </span>
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    type="button"
+                    className="showcase-media"
+                    onClick={() => goTo(i)}
+                    aria-label={`Xem quân ${pair.rank}`}
+                  >
+                    <div className="showcase-turn showcase-card-back">
+                      <span className="showcase-turn-face showcase-turn-front">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={pair.blackImg} alt={`Lá ${pair.rank} đen`} className="showcase-card-img" />
+                      </span>
+                    </div>
+                    <div className="showcase-turn showcase-card-front">
+                      <span className="showcase-turn-face showcase-turn-front">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={pair.redImg} alt={`Lá ${pair.rank} đỏ`} className="showcase-card-img" />
+                      </span>
+                    </div>
+                  </button>
+                )}
                 <div className="showcase-copy" aria-hidden={!isOpen}>
                   <div className="showcase-copy-inner">
                     <h3>{pair.rank}</h3>
@@ -271,14 +365,24 @@ export default function ProductShowcase() {
       </div>
 
       <div className="showcase-addons">
-        <h3 className="showcase-addons-title">Sản phẩm đi kèm</h3>
+        <div className="showcase-addons-heading">
+          <span className="showcase-addons-kicker">Từ bản vẽ đến sản phẩm</span>
+          <h2 className="showcase-addons-title uses-webfont">Chỉn chu trong từng chi tiết</h2>
+          <p className="showcase-addons-subhead">
+            Từ nét phác thảo tay đầu tiên đến hộp giấy trên kệ — mỗi công đoạn đều được giữ đúng
+            tinh thần của bộ bài.
+          </p>
+        </div>
         <div className="showcase-addons-grid">
           {ADDON_ITEMS.map((item) => (
             <div className="showcase-addon-card" key={item.name}>
-              <div className="showcase-addon-frame">
-                <img src={withBasePath(item.image)} alt={item.name} />
+              <div className={`showcase-addon-frame${item.images.length > 1 ? " is-split" : ""}`}>
+                {item.images.map((src) => (
+                  <img key={src} src={withBasePath(src)} alt={item.name} />
+                ))}
               </div>
-              <p className="showcase-addon-caption">{item.name}</p>
+              <p className="showcase-addon-name">{item.name}</p>
+              <p className="showcase-addon-caption">{item.description}</p>
             </div>
           ))}
         </div>

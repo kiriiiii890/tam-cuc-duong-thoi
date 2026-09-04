@@ -22,7 +22,7 @@ export default function Hero() {
       <div className="wrap">
         <div>
           <div className="hero-eyebrow">32 lá · Bài giấy · In tại Việt Nam</div>
-          <h1>
+          <h1 className="uses-webfont">
             Tìm về hồn xưa
             <br />
             trong nếp bài

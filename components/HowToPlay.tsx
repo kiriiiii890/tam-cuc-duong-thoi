@@ -258,8 +258,7 @@ export default function HowToPlay() {
 
   return (
     <section id="cach-choi" className="section howto-section">
-      <h6 className="section-kicker">02 - Cách chơi</h6>
-      <h2>Luật chơi, gói trong chín bước</h2>
+      <h2 className="uses-webfont">Luật chơi, gói trong chín bước</h2>
       <div className="howto-stage" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
         <div className="howto-panels">
           {STEPS.map((s, i) => {

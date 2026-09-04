@@ -38,9 +38,9 @@ export default function Faq() {
         <div className="faq-layout">
           <div className="faq-heading">
             <h6 className="section-kicker" style={{ marginBottom: 12 }}>
-              08 - Câu hỏi thường gặp
+              Câu hỏi thường gặp
             </h6>
-            <h2>
+            <h2 className="uses-webfont">
               Trước khi
               <br />
               bấm mua
