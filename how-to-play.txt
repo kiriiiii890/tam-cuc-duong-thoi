@@ -1,0 +1,171 @@
+CÁCH CHƠI TAM CÚC
+==================
+
+Tổng hợp toàn bộ luật chơi (2, 3, 4 người) thành 1 file duy nhất, dễ đọc từ
+đầu đến cuối. Đây là bản tổng hợp — nguồn sự thật chi tiết cho từng ruleset
+vẫn là docs/rules/2-players.md và docs/rules/3-players.md (dùng trực tiếp
+bởi packages/game-core/src/ruleset.ts); khi 2 nơi lệch nhau, tin theo 2 file
+đó.
+
+
+1. BỘ BÀI
+---------
+
+32 lá, chia 2 màu — 16 đỏ + 16 đen. Mỗi màu gồm:
+
+  - Tướng: 1
+  - Sĩ:    2
+  - Tượng: 2
+  - Xe:    2
+  - Pháo:  2
+  - Mã:    2
+  - Tốt:   5
+
+Thứ tự mạnh yếu: Tướng > Sĩ > Tượng > Xe > Pháo > Mã > Tốt.
+Cùng hàng thì đỏ mạnh hơn đen.
+
+
+2. SỐ NGƯỜI CHƠI: 2, 3 HOẶC 4
+-----------------------------
+
+Ba ruleset dùng chung phần lớn luật (lượt đánh, kết đôi/kết ba, tính điểm),
+chỉ khác ở bộ bài dùng và khẩu quyết mở đầu ván:
+
+  2 người
+    - Bài dùng: nguyên 32 lá
+    - Số lá/người: 16
+    - Bộ ba hợp lệ: Tướng-Sĩ-Tượng, Xe-Pháo-Mã
+    - Khẩu quyết mở ván: "Cấm tướng, cấm sĩ, lấy tượng cầm đầu"
+    - Quân cao nhất: Tướng đỏ
+
+  3 người
+    - Bài dùng: bỏ 5 lá trước khi chia (còn 27)
+    - Số lá/người: 9
+    - Bộ ba hợp lệ: chỉ Xe-Pháo-Mã (không còn Tướng)
+    - Khẩu quyết mở ván: "Cấm sĩ, cấm tượng, lấy xe cầm đầu"
+    - Quân cao nhất: Xe đỏ (vì cả 2 Tướng bị loại)
+
+  4 người
+    - Bài dùng: nguyên 32 lá
+    - Số lá/người: 8
+    - Bộ ba hợp lệ: Tướng-Sĩ-Tượng, Xe-Pháo-Mã
+    - Khẩu quyết mở ván: giống 2 người
+    - Quân cao nhất: Tướng đỏ
+
+Bàn 3 người — bỏ bớt bài trước khi chia:
+
+  Bỏ ra 5 lá trước khi chia đều cho 3 người (9 lá/người): 2 Tướng (đỏ + đen)
+  + 1 Sĩ đỏ + 1 Tốt đỏ + 1 Tốt đen. Hệ quả:
+
+  - Cả 2 lá Tướng biến mất -> Xe đỏ trở thành quân cao nhất ván đó.
+  - Bộ ba Tướng-Sĩ-Tượng không còn khả thi (thiếu Tướng) -> chỉ còn
+    Xe-Pháo-Mã là bộ ba hợp lệ.
+  - Mỗi màu chỉ còn tối đa 4 Tốt -> không có Ngũ tử (5 Tốt cùng màu), chỉ
+    có thể trình làng Tứ tử (4 Tốt cùng màu).
+
+Bàn 4 người:
+
+  Dùng nguyên bộ 32 lá, luật giống hệt bản 2 người (khẩu quyết mở đầu ván,
+  bộ ba hợp lệ, trình làng...) — chỉ khác số ghế và số lá chia mỗi người
+  (8 lá/người thay vì 16).
+
+
+3. CHIA BÀI & TRÌNH LÀNG
+------------------------
+
+Chia đều bài cho tất cả người chơi, cầm trên tay (không có bài úp riêng).
+
+Trình làng: ngay sau khi chia, ai có 4 hoặc 5 lá Tốt cùng màu trên tay phải
+công bố ngay để nhận điểm thưởng:
+
+  - 4 lá Tốt cùng màu (Tứ tử): +2 điểm.
+  - 5 lá Tốt cùng màu (Ngũ tử) — chỉ có thể ở bàn 2 hoặc 4 người, vì bàn 3
+    người đã bỏ bớt Tốt: +5 điểm, và người này còn được quyền "cướp cái"
+    (đi trước) ở lượt đầu ván.
+
+Nếu không ai trình làng, người đi trước lượt đầu do quy ước của bàn chơi
+(ví dụ: người chơi thật luôn đi trước khi chơi vs AI).
+
+Trình làng chỉ xảy ra 1 lần lúc chia bài đầu ván — không có cơ chế trình
+làng giữa ván.
+
+
+4. LƯỢT ĐÁNH (TRICK)
+---------------------
+
+  - Người đang làm Cái ra 1, 2, hoặc 3 lá úp xuống và báo trước số lượng.
+  - Người kế tiếp theo chiều kim đồng hồ bắt buộc đánh ra đúng số lượng lá
+    úp — không được từ chối. Không cần những lá đó phải hợp thành 1 bộ hợp
+    lệ; người chơi được tự chọn lá nào để đánh, kể cả khi đang có sẵn 1 bộ
+    đủ điều kiện đè.
+  - Ở bàn 3-4 người, lần lượt mọi người còn lại đều phải theo bài như trên
+    trước khi lật.
+  - Khi đủ người theo, lật đồng thời tất cả các lá đã úp, so sánh:
+      - Lá/bộ nào không hợp thành bộ hợp lệ (đôi/bộ ba) thì tự động thua
+        trước lá/bộ Cái ra (nếu Cái ra bộ).
+      - Trong số các lá/bộ hợp lệ, ai cao nhất theo thứ tự mạnh-yếu thắng
+        lượt.
+  - Người thắng ăn hết toàn bộ bài vừa lật (của mọi người tham gia lượt đó,
+    không chỉ 1 đối thủ) và trở thành Cái cho lượt kế tiếp.
+
+Bộ hợp lệ:
+
+  - Đôi: 2 lá cùng hàng, cùng màu.
+  - Bộ ba: Tướng-Sĩ-Tượng hoặc Xe-Pháo-Mã, cùng màu (bàn 3 người chỉ còn
+    Xe-Pháo-Mã do đã loại Tướng).
+
+Quân mở đầu ván:
+
+  Lượt ra bài đầu tiên của mỗi ván bị giới hạn theo khẩu quyết riêng của
+  từng ruleset (xem mục 2) — không được ra các hàng bị cấm, kể cả khi hàng
+  đó nằm trong 1 bộ ba.
+
+
+5. KẾT ĐÔI / KẾT BA
+-------------------
+
+Người đang cầm Cái có thể gọi "kết đôi" hoặc "kết ba" ở bất kỳ lượt nào
+mình làm Cái, miễn có sẵn 1 đôi hoặc 1 bộ ba hợp lệ trên tay (không giới
+hạn hàng bài, không có ngưỡng số lá còn lại trên tay). Về bản chất đây vẫn
+là 1 lượt bài (trick) bình thường, chỉ được gắn cờ để tính thêm điểm
+thưởng:
+
+  1. Cái úp đôi/bộ ba đã chọn xuống (giống ra bài thường) — đối phương biết
+     ngay đang bị gọi kết đôi hay kết ba, nhưng chưa biết chính xác lá nào.
+  2. (Các) đối phương bắt buộc đánh ra đúng số lượng lá (2 hoặc 3), theo
+     đúng luật theo bài thường ở mục 4 — không cần hợp bộ, được tự chọn lá.
+  3. Lật đồng thời, so theo đúng công thức so lượt bài thường: lá không hợp
+     bộ -> Cái thắng tự động; hợp bộ -> so theo thứ tự mạnh-yếu chung
+     (không cần cùng hàng với lá Cái gọi — ví dụ đôi Xe vẫn đè được đôi
+     Mã).
+  4. Bên thắng ăn hết bài vừa dùng và cộng thêm điểm thưởng:
+       - Cái thắng (không ai đè được) -> +2 điểm (kết đôi) hoặc +3 điểm
+         (kết ba).
+       - Có người đè được -> người đó nhận +4 điểm (đè đôi) hoặc +6 điểm
+         (đè ba) thay vì Cái.
+
+Ở bàn 3-4 người, cơ chế giữ nguyên — vì chỉ có đúng 1 người thắng mỗi lượt
+(bộ cao nhất trong tất cả), việc "ai được tính là người đè khi có nhiều đối
+phương đủ điều kiện" tự động được giải quyết bởi chính cơ chế so sánh trên.
+
+
+6. KẾT THÚC VÁN & TÍNH ĐIỂM
+----------------------------
+
+Ván kết thúc khi có người hết bài trên tay. Điểm mỗi người = tổng của:
+
+  - Số lá/bộ ăn được trong suốt ván (mỗi lá ăn được tính 1 điểm).
+  - Điểm thưởng trình làng (mục 3): +2 (Tứ tử) hoặc +5 (Ngũ tử).
+  - Điểm thưởng kết đôi/kết ba (mục 5): +2/+3 nếu Cái thắng, +4/+6 nếu bị
+    đè.
+
+
+7. TÀI LIỆU LIÊN QUAN
+----------------------
+
+  - docs/rules/2-players.md — nguồn sự thật chi tiết cho luật 2 người (và
+    cũng là cơ sở cho 4 người).
+  - docs/rules/3-players.md — nguồn sự thật chi tiết cho luật 3 người, gồm
+    nguồn tham khảo đã dùng.
+  - docs/architecture/roadmap.md (mục Phase 6) — nơi tổng quát hoá kiến
+    trúc sang bàn N người (2/3/4).

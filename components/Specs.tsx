@@ -12,7 +12,7 @@ const SPECS: [string, string][] = [
 export default function Specs() {
   return (
     <section className="section">
-      <h6 className="section-kicker">04 - Thông số</h6>
+      <h6 className="section-kicker">05 - Thông số</h6>
       <div className="specs-grid">
         <table className="table">
           <tbody>

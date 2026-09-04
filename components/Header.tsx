@@ -65,6 +65,7 @@ export default function Header() {
           <img src={withBasePath("/images/logo/logo-full-trimmed.png")} alt="Tam Cúc Đương Thời" className="brand-logo" />
         </a>
         <nav className="site-nav">
+          <a href="#cach-choi">Cách chơi</a>
           <a href="#san-pham">Sản phẩm</a>
           <a href="#danh-gia">Đánh giá</a>
           <a href="#faq">FAQ</a>
@@ -98,6 +99,7 @@ export default function Header() {
       {menuOpen && (
         <div className="mobile-menu">
           <nav className="mobile-menu-nav">
+            <a href="#cach-choi" onClick={() => setMenuOpen(false)}>Cách chơi</a>
             <a href="#san-pham" onClick={() => setMenuOpen(false)}>Sản phẩm</a>
             <a href="#danh-gia" onClick={() => setMenuOpen(false)}>Đánh giá</a>
             <a href="#faq" onClick={() => setMenuOpen(false)}>FAQ</a>

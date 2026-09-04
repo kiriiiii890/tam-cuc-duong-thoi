@@ -185,7 +185,7 @@ export default function ProductShowcase() {
 
   return (
     <section id="san-pham" className="section showcase-section">
-      <h6 className="section-kicker">02 - Sản phẩm</h6>
+      <h6 className="section-kicker">03 - Sản phẩm</h6>
 
       <div className="showcase" ref={showcaseRef}>
         {exiting && (
