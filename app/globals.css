@@ -1,12 +1,18 @@
 /* Design tokens & base component classes — ported from the "Modernist" design
    system used in the original Claude Design source. */
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@48,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap');
+/* Kept as its own single-axis @import rather than merged into the line
+   above as `Lora:ital,wght@0,700;1,400` — this project's Next.js/Turbopack
+   build (Lightning CSS) silently drops a Google Fonts @import that uses
+   the multi-axis "axis1,axis2@v1,v2;v3,v4" tuple syntax (verified: the
+   exact same URL loads fine in a plain browser page, just not through
+   this pipeline), so request each axis combo as its own simple import. */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap');
 
-/* FOUT guard for Lora/Fraunces only — Be Vietnam Pro and system fonts
-   (Georgia) never flash noticeably so they're left alone. FontReady.tsx
-   adds .fonts-loaded to <html> once document.fonts.ready resolves. */
+/* FOUT guard for Lora only — Be Vietnam Pro and system fonts (Georgia)
+   never flash noticeably so they're left alone. FontReady.tsx adds
+   .fonts-loaded to <html> once document.fonts.ready resolves. */
 .uses-webfont { visibility: hidden; }
 .fonts-loaded .uses-webfont { visibility: visible; }
 .story-lead::first-letter { visibility: hidden; }
@@ -28,6 +34,13 @@
   --color-accent: #ec3013;
   --color-accent-2: #e15b47;
   --color-divider: color-mix(in srgb, #201e1d 40%, transparent);
+
+  /* brand pink used by every primary (filled) button, regardless of
+     section — kept separate from --color-accent since that's still the
+     site's general orange accent for links, badges, icons, etc. */
+  --color-brand-pink: #d3054f;
+  --color-brand-pink-600: #a9043f;
+  --color-brand-pink-700: #8b0334;
 
   --color-neutral-100: #f8f4f4;
   --color-neutral-200: #eae7e7;
@@ -133,9 +146,9 @@ figcaption {
 }
 .btn svg { display: block; }
 .btn:disabled { opacity: 0.45; cursor: not-allowed; }
-.btn-primary { background: var(--color-accent); color: var(--color-bg); }
-.btn-primary:hover { background: var(--color-accent-600); }
-.btn-primary:active { background: var(--color-accent-700); }
+.btn-primary { background: var(--color-brand-pink); color: var(--color-bg); }
+.btn-primary:hover { background: var(--color-brand-pink-600); }
+.btn-primary:active { background: var(--color-brand-pink-700); }
 .btn-secondary { border-color: var(--color-divider); }
 .btn-secondary:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
 .btn-secondary:active { background: color-mix(in srgb, var(--color-text) 14%, transparent); }
@@ -546,8 +559,12 @@ textarea.input { min-height: 90px; resize: vertical; }
 }
 .showcase-addons-heading { text-align: center; max-width: 640px; margin: 0 auto clamp(28px, 5vw, 48px); }
 .showcase-addons-kicker {
-  display: block; font-family: Georgia, "Times New Roman", serif; font-style: italic; font-weight: 400;
-  font-feature-settings: "ccmp" 1, "mark" 1, "mkmk" 1;
+  /* Georgia (a system font, not web-loaded) has a real rendering bug on
+     some machines where italic Vietnamese diacritics like "đến"'s ế fail
+     to compose onto the base letter — no font-feature-settings fixed it
+     reliably. Lora is a web font we control, renders identically
+     everywhere, and doesn't have this bug. */
+  display: block; font-family: "Lora", Georgia, serif; font-style: italic; font-weight: 400;
   font-size: 15px; color: color-mix(in srgb, var(--color-bg) 70%, transparent); margin-bottom: 10px;
 }
 .showcase-addons-title {
@@ -602,8 +619,7 @@ textarea.input { min-height: 90px; resize: vertical; }
 .story-body p:last-child { margin-bottom: 0; }
 .story-lead::first-letter {
   float: left; margin: 4px 8px 0 0;
-  font-family: "Fraunces", Georgia, serif;
-  font-variation-settings: "opsz" 48, "wght" 700;
+  font-family: "Lora", Georgia, serif;
   font-size: 3.4em; line-height: 0.85; font-weight: 700;
   color: var(--color-accent-700);
 }
@@ -664,8 +680,7 @@ textarea.input { min-height: 90px; resize: vertical; }
    opaque/interactive; the rest sit at opacity 0 on either side, ready to
    slide in when they become active. */
 .howto-section h2 {
-  font-family: "Fraunces", Georgia, serif; font-weight: 700;
-  font-variation-settings: "opsz" 48, "wght" 700;
+  font-family: "Lora", Georgia, serif; font-weight: 700;
   margin: 0 0 clamp(20px, 4vw, 36px); font-size: clamp(24px, 4vw, 32px); max-width: 100%; white-space: nowrap;
 }
 @media (max-width: 420px) {
@@ -786,8 +801,7 @@ textarea.input { min-height: 90px; resize: vertical; }
 /* benefits (dark strip) */
 .benefits { background: linear-gradient(to right, #281253, #4836a2); color: var(--color-bg); }
 .benefits-title {
-  font-family: "Fraunces", Georgia, serif; font-weight: 700; font-style: normal;
-  font-variation-settings: "opsz" 48, "wght" 700;
+  font-family: "Lora", Georgia, serif; font-weight: 700; font-style: normal;
   font-size: clamp(26px, 4vw, 36px); line-height: 1.2; color: var(--color-bg);
   margin: 0 0 clamp(24px, 4vw, 44px);
 }
@@ -810,8 +824,7 @@ textarea.input { min-height: 90px; resize: vertical; }
   gap: clamp(32px, 5vw, 64px); align-items: start;
 }
 .pricing-title {
-  font-family: "Fraunces", Georgia, serif; font-weight: 700; font-style: normal;
-  font-variation-settings: "opsz" 48, "wght" 700;
+  font-family: "Lora", Georgia, serif; font-weight: 700; font-style: normal;
   font-size: clamp(28px, 4.2vw, 40px); line-height: 1.2; color: var(--color-text);
   margin: 0 0 clamp(16px, 3vw, 24px);
 }
@@ -830,7 +843,7 @@ textarea.input { min-height: 90px; resize: vertical; }
 }
 
 .pricing-card {
-  background: var(--color-surface);
+  background: #e8d4a0;
   border: 1px solid var(--color-divider);
   border-radius: 12px;
   padding: clamp(24px, 3.5vw, 32px);
@@ -843,8 +856,8 @@ textarea.input { min-height: 90px; resize: vertical; }
   margin: 8px 0 20px; font-size: 13px;
   color: color-mix(in srgb, var(--color-text) 65%, transparent);
 }
-.pricing-btn-primary { background: var(--color-accent); color: var(--color-bg); margin-bottom: 10px; }
-.pricing-btn-primary:hover { background: var(--color-accent-600); }
+.pricing-btn-primary { background: var(--color-brand-pink); color: var(--color-bg); margin-bottom: 10px; }
+.pricing-btn-primary:hover { background: var(--color-brand-pink-600); }
 .pricing-btn-secondary { border: 1px solid var(--color-divider); color: var(--color-text); }
 .pricing-btn-secondary:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
 .pricing-card-contact {
@@ -862,8 +875,7 @@ textarea.input { min-height: 90px; resize: vertical; }
 /* faq */
 .faq-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(20px, 4vw, 56px); align-items: start; }
 .faq-heading h2 {
-  font-family: "Fraunces", Georgia, serif; font-weight: 700; font-style: normal;
-  font-variation-settings: "opsz" 48, "wght" 700;
+  font-family: "Lora", Georgia, serif; font-weight: 700; font-style: normal;
   color: var(--color-text); font-size: clamp(26px, 4.4vw, 36px); margin: 0;
 }
 .faq-item { border-top: 2px solid var(--color-divider); }
