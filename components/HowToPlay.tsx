@@ -25,7 +25,7 @@ function CardFan({ images, size = "md" }: { images: string[]; size?: "md" | "sm"
       {images.map((src, i) => (
         <img
           key={i}
-          src={withBasePath(src)}
+          src={src}
           alt=""
           className="howto-fan-card"
           style={{ transform: `rotate(${(i - mid) * 6}deg)`, zIndex: i }}
@@ -55,12 +55,12 @@ function CardClash({
   return (
     <div className="howto-clash">
       <div className="howto-clash-card is-winner">
-        <img src={withBasePath(winnerImg)} alt={winnerAlt} />
+        <img src={winnerImg} alt={winnerAlt} />
         <span className="howto-clash-tag">{tag}</span>
       </div>
       <span className="howto-clash-vs">{vs}</span>
       <div className="howto-clash-card is-loser">
-        <img src={withBasePath(loserImg)} alt={loserAlt} />
+        <img src={loserImg} alt={loserAlt} />
       </div>
     </div>
   );
@@ -94,7 +94,7 @@ const STEPS: Step[] = [
             <span className="howto-rank-index">{i + 1}</span>
             <span className="howto-rank-frame-wrap">
               <span className="howto-rank-frame">
-                <img src={withBasePath(c.redImg)} alt={c.rank} className="howto-rank-img" />
+                <img src={c.redImg} alt={c.rank} className="howto-rank-img" />
               </span>
               {i < RANK_ORDER.length - 1 && <span className="howto-rank-arrow">›</span>}
             </span>
@@ -140,22 +140,22 @@ const STEPS: Step[] = [
       <div className="howto-combos">
         <div className="howto-combo">
           <div className="howto-combo-cards">
-            <img src={withBasePath(tot.redImg)} alt="Tốt Đỏ" />
+            <img src={tot.redImg} alt="Tốt Đỏ" />
           </div>
           <span className="howto-combo-label">Một lá</span>
         </div>
         <div className="howto-combo">
           <div className="howto-combo-cards">
-            <img src={withBasePath(xe.redImg)} alt="Xe Đỏ" />
-            <img src={withBasePath(xe.blackImg)} alt="Xe Đen" />
+            <img src={xe.redImg} alt="Xe Đỏ" />
+            <img src={xe.blackImg} alt="Xe Đen" />
           </div>
           <span className="howto-combo-label">Một đôi — Xe</span>
         </div>
         <div className="howto-combo">
           <div className="howto-combo-cards">
-            <img src={withBasePath(tuong.redImg)} alt="Tướng Đỏ" />
-            <img src={withBasePath(si.redImg)} alt="Sĩ Đỏ" />
-            <img src={withBasePath(voi.redImg)} alt="Tượng Đỏ" />
+            <img src={tuong.redImg} alt="Tướng Đỏ" />
+            <img src={si.redImg} alt="Sĩ Đỏ" />
+            <img src={voi.redImg} alt="Tượng Đỏ" />
           </div>
           <span className="howto-combo-label">Bộ ba cùng màu — Tướng, Sĩ, Tượng</span>
         </div>
@@ -170,16 +170,16 @@ const STEPS: Step[] = [
       <div className="howto-combos">
         <div className="howto-combo">
           <div className="howto-combo-cards">
-            <img src={withBasePath(phao.redImg)} alt="Pháo Đỏ" />
-            <img src={withBasePath(phao.blackImg)} alt="Pháo Đen" />
+            <img src={phao.redImg} alt="Pháo Đỏ" />
+            <img src={phao.blackImg} alt="Pháo Đen" />
           </div>
           <span className="howto-combo-label">Kết đôi — Pháo</span>
         </div>
         <div className="howto-combo">
           <div className="howto-combo-cards">
-            <img src={withBasePath(xe.redImg)} alt="Xe Đỏ" />
-            <img src={withBasePath(phao.redImg)} alt="Pháo Đỏ" />
-            <img src={withBasePath(ma.redImg)} alt="Mã Đỏ" />
+            <img src={xe.redImg} alt="Xe Đỏ" />
+            <img src={phao.redImg} alt="Pháo Đỏ" />
+            <img src={ma.redImg} alt="Mã Đỏ" />
           </div>
           <span className="howto-combo-label">Kết ba — Xe, Pháo, Mã</span>
         </div>
