@@ -13,7 +13,7 @@ export default function BrandStory() {
       <div
         className="story-pattern"
         aria-hidden="true"
-        style={{ backgroundImage: `url('${withBasePath("/images/bg-5.png")}')` }}
+        style={{ backgroundImage: `url('${withBasePath("/images/bg-5-motif.png")}')` }}
       />
       <div className="wrap">
         <h2 className="story-title">Câu chuyện của chúng tôi</h2>
