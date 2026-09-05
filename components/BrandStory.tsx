@@ -1,3 +1,5 @@
+import { withBasePath } from "@/lib/basePath";
+
 const STORY_PARAGRAPHS = [
   "Tam Cúc chưa bao giờ chỉ là một trò chơi bài lá. Suốt nhiều thế hệ, nó là tiếng cười giòn tan trong sân đình ngày hội, là ván bài giải khuây bên nồi bánh chưng đêm ba mươi, là thứ ông bà vẫn lặng lẽ truyền lại cho con cháu qua từng lượt rút bài.",
   "Nhưng giữa nhịp sống hôm nay — nơi người ta quen tay với màn hình hơn quân bài — Tam Cúc dần trở thành một ký ức xa, nằm yên trong ngăn tủ của bà.",
@@ -8,6 +10,11 @@ const STORY_PARAGRAPHS = [
 export default function BrandStory() {
   return (
     <section className="story-section">
+      <div
+        className="story-pattern"
+        aria-hidden="true"
+        style={{ backgroundImage: `url('${withBasePath("/images/bg-5.png")}')` }}
+      />
       <div className="wrap">
         <h2 className="story-title">Câu chuyện của chúng tôi</h2>
         <div className="story-body">
