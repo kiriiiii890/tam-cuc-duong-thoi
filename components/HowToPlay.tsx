@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { CARD_PAIRS } from "@/lib/cards";
 import { withBasePath } from "@/lib/basePath";
+import DecorPattern from "./DecorPattern";
 
 const byId = Object.fromEntries(CARD_PAIRS.map((c) => [c.id, c]));
 const [tuong, si, voi, xe, phao, ma, tot] = [
@@ -134,6 +135,30 @@ const STEPS: Step[] = [
     ),
   },
   {
+    title: "Kết đôi, kết ba",
+    lead: "Đang làm Cái và có sẵn một đôi hay bộ ba? Gọi kết đôi/kết ba để ăn to hơn — thắng thì cộng điểm thưởng, thua thì đối thủ ẵm trọn.",
+    caption: "Cái thắng: +2/+3 điểm — Bị đè: đối thủ +4/+6 điểm",
+    visual: (
+      <div className="howto-combos">
+        <div className="howto-combo">
+          <div className="howto-combo-cards">
+            <img src={phao.redImg} alt="Pháo Đỏ" />
+            <img src={phao.blackImg} alt="Pháo Đen" />
+          </div>
+          <span className="howto-combo-label">Kết đôi — Pháo</span>
+        </div>
+        <div className="howto-combo">
+          <div className="howto-combo-cards">
+            <img src={xe.redImg} alt="Xe Đỏ" />
+            <img src={phao.redImg} alt="Pháo Đỏ" />
+            <img src={ma.redImg} alt="Mã Đỏ" />
+          </div>
+          <span className="howto-combo-label">Kết ba — Xe, Pháo, Mã</span>
+        </div>
+      </div>
+    ),
+  },
+  {
     title: "Cách ra bài",
     lead: "Ra một lá, một đôi, hay trọn bộ ba cùng màu — Tướng-Sĩ-Tượng hoặc Xe-Pháo-Mã.",
     visual: (
@@ -158,30 +183,6 @@ const STEPS: Step[] = [
             <img src={voi.redImg} alt="Tượng Đỏ" />
           </div>
           <span className="howto-combo-label">Bộ ba cùng màu — Tướng, Sĩ, Tượng</span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    title: "Kết đôi, kết ba",
-    lead: "Đang làm Cái và có sẵn một đôi hay bộ ba? Gọi kết đôi/kết ba để ăn to hơn — thắng thì cộng điểm thưởng, thua thì đối thủ ẵm trọn.",
-    caption: "Cái thắng: +2/+3 điểm — Bị đè: đối thủ +4/+6 điểm",
-    visual: (
-      <div className="howto-combos">
-        <div className="howto-combo">
-          <div className="howto-combo-cards">
-            <img src={phao.redImg} alt="Pháo Đỏ" />
-            <img src={phao.blackImg} alt="Pháo Đen" />
-          </div>
-          <span className="howto-combo-label">Kết đôi — Pháo</span>
-        </div>
-        <div className="howto-combo">
-          <div className="howto-combo-cards">
-            <img src={xe.redImg} alt="Xe Đỏ" />
-            <img src={phao.redImg} alt="Pháo Đỏ" />
-            <img src={ma.redImg} alt="Mã Đỏ" />
-          </div>
-          <span className="howto-combo-label">Kết ba — Xe, Pháo, Mã</span>
         </div>
       </div>
     ),
@@ -258,6 +259,7 @@ export default function HowToPlay() {
 
   return (
     <section id="cach-choi" className="section howto-section">
+      <DecorPattern />
       <h2 className="uses-webfont">Luật chơi, gói trong chín bước</h2>
       <div className="howto-stage" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
         <div className="howto-panels">

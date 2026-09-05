@@ -422,6 +422,11 @@ textarea.input { min-height: 90px; resize: vertical; }
    collapsed down to just their card-pair image. Closing sweeps the copy
    panel shut from its right edge back toward the image (right-to-left),
    opening reverses that. */
+/* .showcase-addons (the "Chỉn chu trong từng chi tiết" block) is the
+   last thing in this section and already goes full-bleed to its own
+   edges — .section's own bottom padding would still leave a cream gap
+   below it before the next section starts, so drop just that side here. */
+.showcase-section { padding-bottom: 0; }
 .showcase-heading-block { text-align: center; max-width: 640px; margin: 0 auto clamp(28px, 5vw, 48px); }
 .showcase-heading-kicker {
   display: block; font-family: Georgia, "Times New Roman", serif; font-style: italic; font-weight: 400;
@@ -600,8 +605,26 @@ textarea.input { min-height: 90px; resize: vertical; }
   color: color-mix(in srgb, var(--color-bg) 65%, transparent);
 }
 
+/* shared faint floral watermark (bg-6.png, its native tall portrait
+   crop) dropped behind the content of every light-background section —
+   the host element (a section, or .hero-story-wrap around Hero+
+   BrandStory so that pair shares one continuous instance instead of
+   each restarting its own copy at the seam) is always a direct child
+   of .page, which the layout rule above already makes position:relative
+   with its own stacking context, so z-index: -1 here is enough to sit
+   it behind that host's content without touching the content's own
+   z-index. Sized to the host's full width with height following that
+   image's own aspect ratio, then tiled downward (repeat-y) so a host
+   taller than one copy — a long FAQ list, a phone viewport, more copy
+   added later — keeps getting covered instead of the pattern running
+   out. */
+.decor-pattern {
+  position: absolute; inset: 0; z-index: -1;
+  background-repeat: repeat-y; background-size: 100% auto; background-position: top center;
+}
+
 /* brand story — a plain editorial essay: an italic serif title above a
-   short run of paragraphs, first one carrying a drop cap. No imagery. */
+   short run of paragraphs, first one carrying a drop cap. */
 .story-section { padding: clamp(28px, 5vw, 56px) 0; }
 
 .story-title {
@@ -626,7 +649,7 @@ textarea.input { min-height: 90px; resize: vertical; }
 
 /* Xưa/Nay — a two-panel split contrasting the antique deck (photo, dark
    purple wash) with the new one (plain cream card). */
-.xuanay-section { padding: clamp(28px, 5vw, 56px) 0; }
+.xuanay-section { padding: 0; }
 .xuanay-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
 .xuanay-panel {
   padding: clamp(28px, 5vw, 48px); display: flex; flex-direction: column; justify-content: center;
@@ -818,7 +841,11 @@ textarea.input { min-height: 90px; resize: vertical; }
 
 /* pricing — closing CTA: copy + bullet list on the left, a single price
    card with contact fallbacks on the right. */
-.pricing { background: var(--color-bg); color: var(--color-text); }
+/* no background-color here — it would paint over (hide) the shared
+   .decor-pattern watermark sitting behind .faq-pricing-wrap; this
+   section's cream look already comes from the page background showing
+   through. */
+.pricing { color: var(--color-text); }
 .pricing-layout {
   display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(280px, 1fr);
   gap: clamp(32px, 5vw, 64px); align-items: start;
@@ -844,7 +871,6 @@ textarea.input { min-height: 90px; resize: vertical; }
 
 .pricing-card {
   background: #e8d4a0;
-  border: 1px solid var(--color-divider);
   border-radius: 12px;
   padding: clamp(24px, 3.5vw, 32px);
 }

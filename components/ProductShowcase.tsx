@@ -3,6 +3,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { CARD_PAIRS } from "@/lib/cards";
 import { withBasePath } from "@/lib/basePath";
+import DecorPattern from "./DecorPattern";
 
 // Merch that ships alongside the card deck itself — shown as a plain grid
 // below the rank carousel, no interaction needed.
@@ -215,6 +216,7 @@ export default function ProductShowcase() {
 
   return (
     <section id="san-pham" className="section showcase-section">
+      <DecorPattern />
       <div className="showcase-heading-block">
         <span className="showcase-heading-kicker">Bộ nhân vật</span>
         <h2 className="showcase-heading-title uses-webfont">Bảy quân bài, bảy câu chuyện</h2>

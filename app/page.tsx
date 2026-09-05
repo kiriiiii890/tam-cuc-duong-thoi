@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 // import StatStrip from "@/components/StatStrip"; // temporarily hidden
 import ProductShowcase from "@/components/ProductShowcase";
 import BrandStory from "@/components/BrandStory";
+import DecorPattern from "@/components/DecorPattern";
 import XuaNay from "@/components/XuaNay";
 import HowToPlay from "@/components/HowToPlay";
 import Benefits from "@/components/Benefits";
@@ -15,15 +16,21 @@ export default function Home() {
   return (
     <div className="page">
       <Header />
-      <Hero />
-      {/* <StatStrip /> temporarily hidden */}
-      <BrandStory />
+      <div className="hero-story-wrap">
+        <DecorPattern />
+        <Hero />
+        {/* <StatStrip /> temporarily hidden */}
+        <BrandStory />
+      </div>
       <XuaNay />
       <ProductShowcase />
       <HowToPlay />
       <Benefits />
-      <Faq />
-      <Pricing />
+      <div className="faq-pricing-wrap">
+        <DecorPattern />
+        <Faq />
+        <Pricing />
+      </div>
       <Footer />
       <StickyBar />
     </div>
