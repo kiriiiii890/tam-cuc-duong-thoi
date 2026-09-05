@@ -282,7 +282,8 @@ textarea.input { min-height: 90px; resize: vertical; }
    finished loading, then fades out. */
 .page-preloader {
   position: fixed; inset: 0; z-index: 100;
-  background: var(--color-text); color: var(--color-bg);
+  background-color: var(--color-text); background-size: cover; background-position: center;
+  background-repeat: no-repeat; color: var(--color-bg);
   display: flex; align-items: center; justify-content: center;
   opacity: 1; visibility: visible;
   transition: opacity 0.4s ease, visibility 0s linear 0s;

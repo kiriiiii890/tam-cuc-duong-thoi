@@ -4,8 +4,18 @@ import { useEffect, useState } from "react";
 import { withBasePath } from "@/lib/basePath";
 
 // The page's own background art — add any future full-bleed images here too.
-const PRELOAD_IMAGES = ["/images/bg-1.png", "/images/shawdow.png"].map(withBasePath);
+const PRELOAD_IMAGES = ["/images/bg-1.png", "/images/shawdow.png", "/images/bg-4.png"].map(
+  withBasePath
+);
 const MAX_WAIT_MS = 6000;
+
+// Dark wash over bg-4.png so the pulsing mark stays legible no matter which
+// part of the illustration lands under it.
+const bgStyle = {
+  backgroundImage: `linear-gradient(color-mix(in srgb, var(--color-text) 60%, transparent), color-mix(in srgb, var(--color-text) 60%, transparent)), url('${withBasePath(
+    "/images/bg-4.png"
+  )}')`,
+};
 
 export default function PagePreloader() {
   const [loading, setLoading] = useState(true);
@@ -35,7 +45,11 @@ export default function PagePreloader() {
   }, []);
 
   return (
-    <div className={`page-preloader${loading ? "" : " is-done"}`} aria-hidden={!loading}>
+    <div
+      className={`page-preloader${loading ? "" : " is-done"}`}
+      style={bgStyle}
+      aria-hidden={!loading}
+    >
       <div className="page-preloader-mark">
         <span>TAM CÚC</span>
         <span className="accent">ĐƯƠNG THỜI</span>
