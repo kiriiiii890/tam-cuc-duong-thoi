@@ -1,8 +1,8 @@
 const STORY_PARAGRAPHS = [
   "Tam Cúc chưa bao giờ chỉ là một trò chơi bài lá. Suốt nhiều thế hệ, nó là tiếng cười giòn tan trong sân đình ngày hội, là ván bài giải khuây bên nồi bánh chưng đêm ba mươi, là thứ ông bà vẫn lặng lẽ truyền lại cho con cháu qua từng lượt rút bài.",
-  "Nhưng giữa nhịp sống hôm nay — nơi người ta quen tay với màn hình hơn quân bài — Tam Cúc dần trở thành một ký ức xa, nằm yên trong ngăn tủ của bà.",
-  "Chúng tôi không muốn cất nó vào viện bảo tàng. Chúng tôi muốn nó tiếp tục được cầm trên tay — bởi những con người rất thật của đời sống đương đại: anh shipper rong ruổi khắp phố, cô cậu học trò học bài mỗi tối qua màn hình, ông lão đánh cờ vỉa hè, tiếng loa phường vang lên mỗi sớm mai.",
-  "Tam Cúc Đương Thời là nơi bảy quân bài cũ khoác lên mình một diện mạo mới — để một trò chơi tưởng đã ngủ quên lại tiếp tục được kể, được chơi, và được nhớ.",
+  "Nhưng giữa nhịp sống hôm nay - nơi người ta quen tay với màn hình hơn quân bài - Tam Cúc dần trở thành một ký ức xa, nằm yên trong ngăn tủ của bà.",
+  "Chúng tôi không muốn cất nó vào viện bảo tàng. Chúng tôi muốn nó tiếp tục được cầm trên tay - bởi những con người rất thật của đời sống đương đại: anh shipper rong ruổi khắp phố, cô cậu học trò học bài mỗi tối qua màn hình, ông lão đánh cờ vỉa hè, tiếng loa phường vang lên mỗi sớm mai.",
+  "Tam Cúc Đương Thời là nơi bảy quân bài cũ khoác lên mình một diện mạo mới - để một trò chơi tưởng đã ngủ quên lại tiếp tục được kể, được chơi, và được nhớ.",
 ];
 
 export default function BrandStory() {

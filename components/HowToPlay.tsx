@@ -69,7 +69,7 @@ function CardClash({
 
 type Step = {
   title: string;
-  lead: string;
+  lead: React.ReactNode;
   caption?: string;
   visual: React.ReactNode;
 };
@@ -77,8 +77,8 @@ type Step = {
 const STEPS: Step[] = [
   {
     title: "Một bộ, hai phe",
-    lead: "Bộ bài có 32 lá, chia đều cho hai phe: Đỏ và Đen — chơi được với 2, 3 hoặc 4 người.",
-    caption: "32 lá — 16 Đỏ, 16 Đen",
+    lead: "Bộ bài có 32 lá, chia đều cho hai phe: Đỏ và Đen - chơi được với 2, 3 hoặc 4 người.",
+    caption: "32 lá - 16 Đỏ, 16 Đen",
     visual: (
       <CardFan
         images={[tuong.redImg, tuong.blackImg, xe.redImg, xe.blackImg, tot.redImg, tot.blackImg]}
@@ -87,7 +87,7 @@ const STEPS: Step[] = [
   },
   {
     title: "Thứ bậc quân bài",
-    lead: "Từ mạnh đến yếu: Tướng, Sĩ, Tượng, Xe, Pháo, Mã, Tốt — bảy bậc, bảy vai trò.",
+    lead: "Từ mạnh đến yếu: Tướng, Sĩ, Tượng, Xe, Pháo, Mã, Tốt - bảy bậc, bảy vai trò.",
     visual: (
       <ol className="howto-ranks">
         {RANK_ORDER.map((c, i) => (
@@ -120,8 +120,8 @@ const STEPS: Step[] = [
   },
   {
     title: "Cách chia bài",
-    lead: "Chia đều bài cho tất cả người chơi. Bàn 3 người được khuyên chơi nhất — cân bằng và kịch tính hơn cả.",
-    caption: "Bàn 3 người bỏ ra 5 lá trước khi chia: 2 Tướng, 1 Sĩ Đỏ, 1 Tốt Đỏ, 1 Tốt Đen — còn 27 lá, chia 9 lá/người (bàn 2/4 người dùng nguyên 32 lá)",
+    lead: "Chia đều bài cho tất cả người chơi. Bàn 3 người được khuyên chơi nhất - cân bằng và kịch tính hơn cả.",
+    caption: "Bàn 3 người bỏ ra 5 lá trước khi chia: 2 Tướng, 1 Sĩ Đỏ, 1 Tốt Đỏ, 1 Tốt Đen - còn 27 lá, chia 9 lá/người (bàn 2/4 người dùng nguyên 32 lá)",
     visual: (
       <CardFan images={[tuong.redImg, tuong.blackImg, si.redImg, tot.redImg, tot.blackImg]} />
     ),
@@ -129,15 +129,84 @@ const STEPS: Step[] = [
   {
     title: "Trình làng",
     lead: "Vừa chia xong mà có 4 hay 5 lá Tốt cùng màu trên tay? Công bố ngay để nhận điểm thưởng.",
-    caption: "Tứ tử (4 Tốt): +2 điểm — Ngũ tử (5 Tốt): +5 điểm và được đi trước",
+    caption: "Tứ tử (4 Tốt): +2 điểm - Ngũ tử (5 Tốt): +5 điểm và được đi trước",
     visual: (
       <CardFan images={[tot.redImg, tot.redImg, tot.redImg, tot.redImg, tot.redImg]} />
     ),
   },
   {
+    title: "Ai làm Cái",
+    lead: "Ván đầu, nếu không ai trình làng, mỗi người ra một lá để so - ai lớn nhất được làm Cái.",
+    caption: "Từ ván sau, người thắng ván trước sẽ cầm cái ván này",
+    visual: (
+      <div className="howto-clash">
+        <div className="howto-clash-card is-loser">
+          <img src={xe.blackImg} alt="Xe Đen" />
+        </div>
+        <span className="howto-clash-vs">VS</span>
+        <div className="howto-clash-card is-winner">
+          <img src={tuong.redImg} alt="Tướng Đỏ" />
+          <span className="howto-clash-tag">Làm Cái</span>
+        </div>
+        <span className="howto-clash-vs">VS</span>
+        <div className="howto-clash-card is-loser">
+          <img src={tot.blackImg} alt="Tốt Đen" />
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: "Cái gọi bài",
+    lead: "Mỗi lượt, Cái gọi ra một lá, một đôi, hay một bộ ba tuỳ chiến thuật - những người còn lại phải úp đúng số lá tương ứng.",
+    caption: "Lặp lại từng lượt, đến khi một người hết bài trước",
+    visual: (
+      <div className="howto-combos">
+        <div className="howto-combo">
+          <div className="howto-combo-cards">
+            <img src={withBasePath("/images/card/card-logo.png")} alt="Lá úp của Cái" />
+          </div>
+          <span className="howto-combo-label">Cái</span>
+        </div>
+        <div className="howto-combo">
+          <div className="howto-combo-cards">
+            <img src={withBasePath("/images/card/card-logo.png")} alt="Lá úp của người chơi khác" />
+          </div>
+          <span className="howto-combo-label">Người chơi khác</span>
+        </div>
+        <div className="howto-combo">
+          <div className="howto-combo-cards">
+            <img src={withBasePath("/images/card/card-logo.png")} alt="Lá úp của người chơi khác" />
+          </div>
+          <span className="howto-combo-label">Người chơi khác</span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: "So bài",
+    lead: "Cả bàn lật đồng thời, bộ mạnh hơn thắng và trở thành Cái lượt sau.",
+    caption: "Bộ ngang nhau - phần thắng luôn thuộc về Cái",
+    visual: (
+      <div className="howto-clash">
+        <div className="howto-clash-card is-loser">
+          <img src={ma.blackImg} alt="Mã Đen" />
+        </div>
+        <span className="howto-clash-vs">→</span>
+        <div className="howto-clash-card is-winner">
+          <img src={phao.redImg} alt="Pháo Đỏ" />
+          <span className="howto-clash-tag">Ăn lượt</span>
+        </div>
+        <span className="howto-clash-vs">→</span>
+        <div className="howto-clash-card is-loser">
+          <img src={xe.blackImg} alt="Xe Đen" />
+        </div>
+      </div>
+    ),
+  },
+  {
     title: "Kết đôi, kết ba",
-    lead: "Đang làm Cái và có sẵn một đôi hay bộ ba? Gọi kết đôi/kết ba để ăn to hơn — thắng thì cộng điểm thưởng, thua thì đối thủ ẵm trọn.",
-    caption: "Cái thắng: +2/+3 điểm — Bị đè: đối thủ +4/+6 điểm",
+    lead: "Đang làm Cái và có sẵn một đôi hay bộ ba? Gọi kết đôi/kết ba để ăn to hơn - thắng thì cộng điểm thưởng, thua thì đối thủ ẵm trọn.",
+    caption: "Cái thắng: +2/+3 điểm - Bị đè: đối thủ +4/+6 điểm",
     visual: (
       <div className="howto-combos">
         <div className="howto-combo">
@@ -145,7 +214,7 @@ const STEPS: Step[] = [
             <img src={phao.redImg} alt="Pháo Đỏ" />
             <img src={phao.blackImg} alt="Pháo Đen" />
           </div>
-          <span className="howto-combo-label">Kết đôi — Pháo</span>
+          <span className="howto-combo-label">Kết đôi - Pháo</span>
         </div>
         <div className="howto-combo">
           <div className="howto-combo-cards">
@@ -153,14 +222,20 @@ const STEPS: Step[] = [
             <img src={phao.redImg} alt="Pháo Đỏ" />
             <img src={ma.redImg} alt="Mã Đỏ" />
           </div>
-          <span className="howto-combo-label">Kết ba — Xe, Pháo, Mã</span>
+          <span className="howto-combo-label">Kết ba - Xe, Pháo, Mã</span>
         </div>
       </div>
     ),
   },
   {
     title: "Cách ra bài",
-    lead: "Ra một lá, một đôi, hay trọn bộ ba cùng màu — Tướng-Sĩ-Tượng hoặc Xe-Pháo-Mã.",
+    lead: (
+      <>
+        Ra một lá, một đôi, hay trọn bộ ba cùng màu
+        <br />
+        Tướng-Sĩ-Tượng hoặc Xe-Pháo-Mã.
+      </>
+    ),
     visual: (
       <div className="howto-combos">
         <div className="howto-combo">
@@ -174,7 +249,7 @@ const STEPS: Step[] = [
             <img src={xe.redImg} alt="Xe Đỏ" />
             <img src={xe.blackImg} alt="Xe Đen" />
           </div>
-          <span className="howto-combo-label">Một đôi — Xe</span>
+          <span className="howto-combo-label">Một đôi - Xe</span>
         </div>
         <div className="howto-combo">
           <div className="howto-combo-cards">
@@ -182,38 +257,15 @@ const STEPS: Step[] = [
             <img src={si.redImg} alt="Sĩ Đỏ" />
             <img src={voi.redImg} alt="Tượng Đỏ" />
           </div>
-          <span className="howto-combo-label">Bộ ba cùng màu — Tướng, Sĩ, Tượng</span>
+          <span className="howto-combo-label">Bộ ba cùng màu - Tướng, Sĩ, Tượng</span>
         </div>
       </div>
     ),
   },
   {
-    title: "So bài",
-    lead: "Cái úp 1–3 lá xuống, đối thủ buộc phải úp lại đúng số lá. Lật đồng thời — bộ mạnh hơn ăn trọn và trở thành Cái lượt sau.",
-    caption: "Lặp lại từng lượt, đến khi một người hết bài trước",
-    visual: (
-      <CardClash
-        winnerImg={phao.redImg}
-        winnerAlt="Pháo Đỏ"
-        loserImg={ma.blackImg}
-        loserAlt="Mã Đen"
-        tag="Ăn lượt"
-        vs="→"
-      />
-    ),
-  },
-  {
     title: "Vậy thôi",
     lead: "Chỉ vậy thôi. Mở hộp ra, là chơi được ngay.",
-    visual: (
-      <div className="howto-close">
-        <img
-          src={withBasePath("/images/item/hop-bai-lon.png")}
-          alt="Hộp bài Tam Cúc Đương Thời"
-          className="howto-close-img"
-        />
-      </div>
-    ),
+    visual: null,
   },
 ];
 
@@ -260,7 +312,7 @@ export default function HowToPlay() {
   return (
     <section id="cach-choi" className="section howto-section">
       <DecorPattern />
-      <h2 className="uses-webfont">Luật chơi, gói trong chín bước</h2>
+      <h2 className="uses-webfont">Luật chơi, gói trong mười một bước</h2>
       <div className="howto-stage" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
         <div className="howto-panels">
           {STEPS.map((s, i) => {

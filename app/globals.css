@@ -803,9 +803,6 @@ textarea.input { min-height: 90px; resize: vertical; }
 .howto-combo-cards img:first-child { margin-left: 0; }
 .howto-combo-label { font-size: 12px; text-align: center; color: color-mix(in srgb, var(--color-text) 60%, transparent); }
 
-/* closing step */
-.howto-close-img { width: min(220px, 55vw); margin: 0 auto; }
-
 /* controls: back / progress dots / next */
 .howto-controls { display: flex; align-items: center; justify-content: center; gap: clamp(12px, 3vw, 24px); margin-top: clamp(24px, 4vw, 36px); }
 .howto-dots { display: flex; gap: 8px; }
@@ -892,7 +889,6 @@ textarea.input { min-height: 90px; resize: vertical; }
 }
 .pricing-card-contact p { margin: 0; }
 .pricing-card-contact-label { font-weight: 700; color: var(--color-text); margin-bottom: 4px !important; }
-.pricing-card-contact-note { font-style: italic; opacity: 0.75; margin-top: 4px !important; }
 
 @media (max-width: 860px) {
   .pricing-layout { grid-template-columns: minmax(0, 1fr); }

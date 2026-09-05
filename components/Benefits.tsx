@@ -7,11 +7,11 @@ const BENEFITS: Benefit[] = [
   },
   {
     title: "Không lá nào là bản chỉnh sửa",
-    body: "32 lá là 32 bức tranh vẽ tay riêng biệt, lên màu số từng chi tiết — không phải Photoshop lại bản gốc.",
+    body: "32 lá là 32 bức tranh vẽ tay riêng biệt, lên màu số từng chi tiết - không phải Photoshop lại bản gốc.",
   },
   {
     title: "Bền tay qua hàng trăm ván",
-    body: "Giấy ivory 300gsm cán mờ hai mặt — xào bài trơn tay, mép không xù dù chơi suốt cả mùa Tết.",
+    body: "Giấy ivory 300gsm cán mờ hai mặt - xào bài trơn tay, mép không xù dù chơi suốt cả mùa Tết.",
   },
   {
     title: "Mở hộp ra là thành món quà",

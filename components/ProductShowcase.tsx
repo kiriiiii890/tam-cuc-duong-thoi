@@ -222,7 +222,7 @@ export default function ProductShowcase() {
         <h2 className="showcase-heading-title uses-webfont">Bảy quân bài, bảy câu chuyện</h2>
         <p className="showcase-heading-body">
           Mỗi quân bài truyền thống được tái hiện qua một nhân vật quen thuộc của phố thị hôm nay
-          — giữ nguyên thứ bậc, đổi mới linh hồn.
+          - giữ nguyên thứ bậc, đổi mới linh hồn.
         </p>
       </div>
 
@@ -371,7 +371,7 @@ export default function ProductShowcase() {
           <span className="showcase-addons-kicker">Từ bản vẽ đến sản phẩm</span>
           <h2 className="showcase-addons-title uses-webfont">Chỉn chu trong từng chi tiết</h2>
           <p className="showcase-addons-subhead">
-            Từ nét phác thảo tay đầu tiên đến hộp giấy trên kệ — mỗi công đoạn đều được giữ đúng
+            Từ nét phác thảo tay đầu tiên đến hộp giấy trên kệ - mỗi công đoạn đều được giữ đúng
             tinh thần của bộ bài.
           </p>
         </div>
