@@ -584,16 +584,8 @@ textarea.input { min-height: 90px; resize: vertical; }
 }
 
 /* brand story — a plain editorial essay: an italic serif title above a
-   short run of paragraphs, first one carrying a drop cap. bg-5-motif.png
-   (a single flower cropped out of the bg-5 pattern sheet, faint by
-   design) sits behind it as one enlarged watermark, sized to the
-   section, in its own stacking context so it stays behind the copy
-   without needing z-index on .wrap. */
+   short run of paragraphs, first one carrying a drop cap. No imagery. */
 .story-section { padding: clamp(28px, 5vw, 56px) 0; }
-.story-pattern {
-  position: absolute; inset: 0; z-index: -1;
-  background-repeat: no-repeat; background-size: cover; background-position: center;
-}
 
 .story-title {
   font-family: Georgia, "Times New Roman", serif; font-style: italic; font-weight: 400;
