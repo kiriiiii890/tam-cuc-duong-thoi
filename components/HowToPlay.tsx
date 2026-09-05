@@ -119,7 +119,7 @@ const STEPS: Step[] = [
   },
   {
     title: "Cách chia bài",
-    lead: "Chia đều bài cho tất cả người chơi, bày ngửa cho ai cũng thấy. Bàn 3 người được khuyên chơi nhất — cân bằng và kịch tính hơn cả.",
+    lead: "Chia đều bài cho tất cả người chơi. Bàn 3 người được khuyên chơi nhất — cân bằng và kịch tính hơn cả.",
     caption: "Bàn 3 người bỏ ra 5 lá trước khi chia: 2 Tướng, 1 Sĩ Đỏ, 1 Tốt Đỏ, 1 Tốt Đen — còn 27 lá, chia 9 lá/người (bàn 2/4 người dùng nguyên 32 lá)",
     visual: (
       <CardFan images={[tuong.redImg, tuong.blackImg, si.redImg, tot.redImg, tot.blackImg]} />
